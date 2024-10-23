@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Παρουσία Μαθήματος</title>
+</head>
+<body>
+    <h1>Φόρμα Παρουσίας Μαθήματος</h1>
+    <form id="attendanceForm" onsubmit="return validateForm()">
+        <label for="fullname">Όνομα και Επώνυμο:</label>
+        <input type="text" id="fullname" name="fullname" required><br><br>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        
+        <label for="latitude">Γεωγραφικό πλάτος:</label>
+        <input type="text" id="latitude" name="latitude" readonly><br><br>
+        
+        <label for="longitude">Γεωγραφικό μήκος:</label>
+        <input type="text" id="longitude" name="longitude" readonly><br><br>
+        
+        <button type="submit">Υποβολή Παρουσίας</button>
+    </form>
+
+    <script>
+        // Λειτουργία για λήψη γεωγραφικής τοποθεσίας
+        navigator.geolocation.getCurrentPosition(function(position) {
+            document.getElementById('latitude').value = position.coords.latitude;
+            document.getElementById('longitude').value = position.coords.longitude;
+        });
+
+        // Επαλήθευση της φόρμας πριν την υποβολή
+        function validateForm() {
+            const fullname = document.getElementById('fullname').value;
+            const email = document.getElementById('email').value;
+            const latitude = document.getElementById('latitude').value;
+            const longitude = document.getElementById('longitude').value;
+
+            if (fullname === '' || email === '' || latitude === '' || longitude === '') {
+                alert('Πρέπει να συμπληρωθούν όλα τα πεδία.');
+                return false; // Αποτρέπει την υποβολή της φόρμας
+            }
+            return true; // Επιτρέπει την υποβολή της φόρμας
+        }
+    </script>
+</body>
+</html>
