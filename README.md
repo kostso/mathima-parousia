@@ -47,6 +47,7 @@
 </body>
 </html>
 
+
     <input type="email" name="entry.552637671"><br>
     <input type="submit" value="Υποβολή">
   </form>
