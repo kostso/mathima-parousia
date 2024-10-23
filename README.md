@@ -7,7 +7,10 @@
 </head>
 <body>
     <h1>Φόρμα Παρουσίας Μαθήματος</h1>
-    <form id="attendanceForm">
+    <form id="attendanceForm" onsubmit="return validateForm()">
+        <label for="fullname">Όνομα και Επώνυμο:</label>
+        <input type="text" id="fullname" name="fullname" required><br><br>
+        
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required><br><br>
         
@@ -26,9 +29,24 @@
             document.getElementById('latitude').value = position.coords.latitude;
             document.getElementById('longitude').value = position.coords.longitude;
         });
+
+        // Επαλήθευση της φόρμας πριν την υποβολή
+        function validateForm() {
+            const fullname = document.getElementById('fullname').value;
+            const email = document.getElementById('email').value;
+            const latitude = document.getElementById('latitude').value;
+            const longitude = document.getElementById('longitude').value;
+
+            if (fullname === '' || email === '' || latitude === '' || longitude === '') {
+                alert('Πρέπει να συμπληρωθούν όλα τα πεδία.');
+                return false; // Αποτρέπει την υποβολή της φόρμας
+            }
+            return true; // Επιτρέπει την υποβολή της φόρμας
+        }
     </script>
 </body>
 </html>
+
     <input type="email" name="entry.552637671"><br>
     <input type="submit" value="Υποβολή">
   </form>
